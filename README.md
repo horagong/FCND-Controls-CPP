@@ -2,6 +2,7 @@
 ## Control Inputs
 In this project, x, y, z is in NED and the thrust upward is positive.
 The controller for the quad uses the collective thrust and rotational moments as inputs and those inputs are converted to each rotor thrust. (F1: front left, F2: front right, F3: rear left, F4: rear right)
+
 ![](img/controls.png)
 
 
@@ -55,6 +56,7 @@ float QuadControl::AltitudeControl(float posZCmd, float velZCmd, float posZ, flo
 
 ## RollPitch Controller
 The `R_dot_commanded` has the following relation with the body rates. The roll pitch controller commands the desired body rates for the body rate controller using this equation.
+
 ![](img/R_dot.png)
 ![](img/pq.png)
 
@@ -107,6 +109,7 @@ V3F QuadControl::RollPitchControl(V3F accelCmd, Quaternion<float> attitude, floa
 ## BodyRate Controller
 It is better to implement and test the inner controller first. So the body rate controller and then the roll pitch controller should be implemented.
 This proportional body rate controller commands the rotation moments using the error of the body rates.
+
 ![](img/cascade.png)
 ```
 V3F QuadControl::BodyRateControl(V3F pqrCmd, V3F pqr)
